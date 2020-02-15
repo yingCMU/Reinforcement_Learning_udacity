@@ -61,4 +61,5 @@ Thus, while the CartPole-v0 environment does specify an MDP, it does not specify
 
 # Policy
 - deterministic policy
-- stochastic policy: probability that agent takes action a in state s. $$\pi(a|s) = p(A_t=a| S_t=s)$$
+- stochastic policy: probability that agent takes action a in state s.
+$$\pi(a|s) = p(A_t=a| S_t=s)$$
