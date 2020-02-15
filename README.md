@@ -34,7 +34,11 @@ All of the projects in this Nanodegree program use the rich simulation environme
   -[OpenAI Gym blog](https://openai.com/blog/openai-gym-beta/)
   -[Gym Environment](https://gym.openai.com/envs/#classic_control)
   -[Github](https://github.com/openai/gym)
+  -[Available list of environment](https://github.com/openai/gym/wiki/Table-of-environments)
   - [A Well-trained OpenAI Agent](https://openai.com/blog/roboschool/)
+  - [Cart-Pole Balancing with Q-Learning](https://medium.com/@tuzzer/cart-pole-balancing-with-q-learning-b54c6068d947)
+    - https://gym.openai.com/envs/CartPole-v0/
+    - https://github.com/openai/gym/wiki/CartPole-v0
   - [LeaderBoard](https://github.com/openai/gym/wiki/Leaderboard) which contains the best solutions to each task.
 
 - [AWS Credit]
