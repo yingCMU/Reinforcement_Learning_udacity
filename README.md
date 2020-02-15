@@ -1,4 +1,4 @@
-# Application of rl
+# Application of RL
 - Read about TD-Gammon [Temporal Difference Learning and TD-Gammon(tesauro95cacm.pdf)], one of the first successful applications of neural networks to reinforcement learning.
 
 - Read about [AlphaGo Zero](https://deepmind.com/blog/article/alphago-zero-starting-scratch), the state-of-the-art computer program that defeats professional human Go players.
@@ -20,6 +20,7 @@ Learn about RL for self-driving cars-[MIT 6.S094: Deep Learning for Self-Driving
 # Resources
 - TextBook
   [Grokking Deep Reinforcement Learning](https://www.manning.com/books/grokking-deep-reinforcement-learning#toc) This textbook features numerous examples, illustrations, exercises, and crystal-clear teaching.
+  - [Python Implementation of Reinforcement Learning: An Introduction](https://github.com/ShangtongZhang/reinforcement-learning-an-introduction)
 - [Student list of resources](https://docs.google.com/spreadsheets/d/19jUvEO82qt3itGP3mXRmaoMbVOyE6bLOp5_QwqITzaM/edit#gid=0)
 - [Gazebo](http://gazebosim.org/)
 Using a Gazebo simulation, you will train a rover to navigate an environment without running into walls.
