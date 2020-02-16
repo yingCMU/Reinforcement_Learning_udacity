@@ -66,9 +66,40 @@ A policy determines how an agent chooses an action in response to the current st
 $$\pi(a|s) = p(A_t=a| S_t=s)$$
 
 Now the question is how the agent can find the best policy?
+A policy 'π′ is defined to be better than or equal to a policy π if and only if v_{\pi'}(s) >= v_\pi(s)v for all states s
+An optimal policy \pi_*π
+∗
+​	  satisfies \pi_* \geq \piπ
+∗
+​	 ≥π for all policies \piπ. An optimal policy is guaranteed to exist but may not be unique.
+
+Once the agent determines the optimal action-value function, it can quickly obtain an optimal policy by setting action to be argmax.
 # State Value function
 ![alt text](./images/state_value_func.png)
+# Action Value Function
+for each state and action, the action value function yields the expected return, if the agent starts in that state, takes the action, and **then follows the policy** for all future time steps.
 # Bellman Equations
 for a general MDP, we have to instead work in terms of an expectation, since it's not often the case that the immediate reward and next state can be predicted with certainty.
 Bellman Expectation Equation (for v_\piv π)
 ![alt text](./images/bellman_expectation_eq.png)
+How to calculate expectation?
+![alt text](./images/expectation.png)
+
+**There are a total of 4 Bellman equations.** All of the Bellman equations attest to the fact that value functions satisfy recursive relationships.  the Bellman Expectation Equation (for v_π) shows that it is possible to relate the value of a state to the values of all of its possible successor states.
+After finishing this lesson, you are encouraged to read about the remaining three Bellman equations in sections 3.5 and 3.6 of the textbook.
+
+# Monte Carlo Prediction
+ the agent can take a bad policy, like the equiprobable random policy, use it to collect some episodes, and then consolidate the results to arrive at a better policy.
+ Prediction Problem: Given a policy, how might the agent estimate the value function for that policy?
+![alt text](./images/mc_prediction.png)
+## Q Table
+The Q-table is used to estimate the action-value function.
+![alt text](./images/q_table.png)
+## First-Visit vs Every-Visit MC
+Problem: in a single episode - the same action is selected from the same state many times
+![alt text](./images/first_every_visit.png)
+- Both the first-visit and every-visit method are guaranteed to converge to the true action-value function, as the number of visits to each state-action pair approaches infinity. (So, in other words, as long as the agent gets enough experience with each state-action pair, the value function estimate will be pretty close to the true value.) In the case of first-visit MC, convergence follows from the Law of Large Numbers, and the details are covered in section 5.1 of the textbook.
+- If you are interested in learning more about the difference between first-visit and every-visit MC methods, you are encouraged to read Section 3 of this paper- [Reinforcement Learning with Replacing Eligibility Traces
+](http://www-anw.cs.umass.edu/legacy/pubs/1995_96/singh_s_ML96.pdf). The results are summarized in Section 3.6. The authors show:
+- Every-visit MC is [biased](https://en.wikipedia.org/wiki/Bias_of_an_estimator), whereas first-visit MC is unbiased (see Theorems 6 and 7).
+- Initially, every-visit MC has lower mean squared error (MSE), but as more episodes are collected, first-visit MC attains better MSE (see Corollary 9a and 10a, and Figure 4).
