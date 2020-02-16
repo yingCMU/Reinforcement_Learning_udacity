@@ -60,6 +60,15 @@ Thus, while the CartPole-v0 environment does specify an MDP, it does not specify
   - The discounted return at time step t is: G_t = R_t+1 + ...
 
 # Policy
+A policy determines how an agent chooses an action in response to the current state. In other words, it specifies how the agent responds to situations that the environment has presented.
 - deterministic policy
 - stochastic policy: probability that agent takes action a in state s.
 $$\pi(a|s) = p(A_t=a| S_t=s)$$
+
+Now the question is how the agent can find the best policy?
+# State Value function
+![alt text](./images/state_value_func.png)
+# Bellman Equations
+for a general MDP, we have to instead work in terms of an expectation, since it's not often the case that the immediate reward and next state can be predicted with certainty.
+Bellman Expectation Equation (for v_\piv π)
+![alt text](./images/bellman_expectation_eq.png)
