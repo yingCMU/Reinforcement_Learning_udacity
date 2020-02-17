@@ -120,3 +120,66 @@ Monte Carlo control method alternates between policy evaluation and policy impro
 - two improvements that you can make to the policy evaluation step in your control algorithm.
   - In the Incremental Mean concept, you will learn how to update the policy after every episode (instead of waiting to update the policy until after the values of the Q-table have fully converged from many episodes).
   - In the Constant-alpha concept, you will learn how to train the agent to leverage its most recent experience more effectively.
+## Explore & Exploit
+At every time step, when the agent selects an action, it bases its decision on past experience with the environment. And, towards minimizing the number of episodes needed to solve environments in OpenAI Gym, our first instinct could be to devise a strategy where the agent always selects the action that it believes (based on its past experience) will maximize return. With this in mind, the agent could follow the policy that is greedy with respect to the action-value function estimate. We examined this approach in a previous video and saw that it can easily lead to convergence to a sub-optimal policy.
+To see why this is the case, note that in early episodes, the agent's knowledge is quite limited (and potentially flawed). So, it is highly likely that actions estimated to be non-greedy by the agent are in fact better than the estimated greedy action.
+With this in mind, a successful RL agent cannot act greedily at every time step (that is, it cannot always exploit its knowledge); instead, in order to discover the optimal policy, it has to continue to refine the estimated return for all state-action pairs (in other words, it has to continue to explore the range of possibilities by visiting every state-action pair). That said, the agent should always act somewhat greedily, towards its goal of maximizing return as quickly as possible. This motivated the idea of an \epsilonϵ-greedy policy.
+We refer to the need to balance these two competing requirements as the Exploration-Exploitation Dilemma. One potential solution to this dilemma is implemented by gradually modifying the value of \epsilonϵ when constructing \epsilonϵ-greedy policies.
+
+### Setting the Value of \epsilonϵ, in Theory
+It makes sense for the agent to begin its interaction with the environment by favoring exploration over exploitation. After all, when the agent knows relatively little about the environment's dynamics, it should distrust its limited knowledge and explore, or try out various strategies for maximizing return. With this in mind, the best starting policy is the equiprobable random policy, as it is equally likely to explore all possible actions from each state. You discovered in the previous quiz that setting \epsilon = 1ϵ=1 yields an \epsilonϵ-greedy policy that is equivalent to the equiprobable random policy.
+
+At later time steps, it makes sense to favor exploitation over exploration, where the policy gradually becomes more greedy with respect to the action-value function estimate. After all, the more the agent interacts with the environment, the more it can trust its estimated action-value function. You discovered in the previous quiz that setting \epsilon = 0ϵ=0 yields the greedy policy (or, the policy that most favors exploitation over exploration).
+
+Thankfully, this strategy (of initially favoring exploration over exploitation, and then gradually preferring exploitation over exploration) can be demonstrated to be optimal.
+### Convergence
+Greedy in the Limit with Infinite Exploration (GLIE). In order to guarantee that MC control converges to the optimal policy \pi_*π
+∗
+​	 , we need to ensure that two conditions are met. We refer to these conditions as GLIE
+  - every state-action pair s, as,a (for all s\in\mathcal{S}s∈S and a\in\mathcal{A}(s)a∈A(s)) is visited infinitely many times, and
+  - the policy converges to a policy that is greedy with respect to the action-value function estimate QQ,
+
+  One way to satisfy these conditions is to modify the value of \epsilonϵ when specifying an \epsilonϵ-greedy policy. In particular, let \epsilon_iϵ
+  i
+  ​	  correspond to the ii-th time step. Then, both of these conditions are met if:
+
+  \epsilon_i > 0ϵ
+  i
+  ​	 >0 for all time steps ii, and
+  \epsilon_iϵ
+  i
+  ​	  decays to zero in the limit as the time step ii approaches infinity (that is, \lim_{i\to\infty} \epsilon_i = 0lim
+  i→∞
+  ​	 ϵ
+  i
+  ​	 =0).
+
+  For example, to ensure convergence to the optimal policy, we could set \epsilon_i = \frac{1}{i}ϵ
+i
+​	 =
+i
+1
+​### Setting the Value of \epsilonϵ, in Practice
+
+Even though convergence is not guaranteed by the mathematics, you can often get better results by either:
+
+using fixed \epsilonϵ, or
+letting \epsilon_iϵ
+i
+​	  decay to a small positive number, like 0.1.
+
+This is because one has to be very careful with setting the decay rate for \epsilonϵ; letting it get too small too fast can be disastrous. If you get late in training and \epsilonϵ is really small, you pretty much want the agent to have already converged to the optimal policy, as it will take way too long otherwise for it to test out new actions!
+
+As a famous example in practice, you can read more about how the value of \epsilonϵ was set in the famous DQN algorithm by reading the Methods section of the [research paper](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf):
+The behavior policy during training was epsilon-greedy with epsilon annealed linearly from 1.0 to 0.1 over the first million frames, and fixed at 0.1 thereafter.
+## Incremental Mean
+In our current algorithm for Monte Carlo control, we collect a large number of episodes to build the Q-table (as an estimate for the action-value function corresponding to the agent's current policy). Then, after the values in the Q-table have converged, we use the table to come up with an improved policy.
+
+Maybe it would be more efficient to update the Q-table after every episode. Then, the updated Q-table could be used to improve the policy. That new policy could then be used to generate the next episode, and so on.
+![alt text](./images/mc_control_inc_mean.png)
+
+In this case, even though we're updating the policy before the values in the Q-table accurately approximate the action-value function, this lower-quality estimate nevertheless still has enough information to help us propose successively better policies. If you're curious to learn more, you can read section 5.6 of the textbook
+![alt text](./images/inc_mean.png)
+left is normal MC, right is incremental mean MC
+![alt text](./images/mc_algo.png)
+![alt text](./images/mc_inc_mean_algo.png)
