@@ -101,5 +101,22 @@ Problem: in a single episode - the same action is selected from the same state m
 - Both the first-visit and every-visit method are guaranteed to converge to the true action-value function, as the number of visits to each state-action pair approaches infinity. (So, in other words, as long as the agent gets enough experience with each state-action pair, the value function estimate will be pretty close to the true value.) In the case of first-visit MC, convergence follows from the Law of Large Numbers, and the details are covered in section 5.1 of the textbook.
 - If you are interested in learning more about the difference between first-visit and every-visit MC methods, you are encouraged to read Section 3 of this paper- [Reinforcement Learning with Replacing Eligibility Traces
 ](http://www-anw.cs.umass.edu/legacy/pubs/1995_96/singh_s_ML96.pdf). The results are summarized in Section 3.6. The authors show:
-- Every-visit MC is [biased](https://en.wikipedia.org/wiki/Bias_of_an_estimator), whereas first-visit MC is unbiased (see Theorems 6 and 7).
-- Initially, every-visit MC has lower mean squared error (MSE), but as more episodes are collected, first-visit MC attains better MSE (see Corollary 9a and 10a, and Figure 4).
+  - Every-visit MC is [biased](https://en.wikipedia.org/wiki/Bias_of_an_estimator), whereas first-visit MC is unbiased (see Theorems 6 and 7).
+  - Initially, every-visit MC has lower mean squared error (MSE), but as more episodes are collected, first-visit MC attains better MSE (see Corollary 9a and 10a, and Figure 4).
+
+## Problem with greedy policy
+we can iterate this process: use any random policy to estimate values, update policy to optimal policy then continue with the new iteration.
+The problem is we may never truly explore non-optimal policies enough to know whether they are truly sub-optimal.
+Early perception can be incorrect.
+## MC Control
+if the agent alternates between these two steps, with:
+- Step 1: using the policy \piπ to construct the Q-table, and
+- Step 2: improving the policy by changing it to be ϵ-greedy with respect to the Q-table (π' <= ϵ-greedy(Q), π←π')
+we will eventually obtain the optimal policy π_*.
+It is common to refer to Step 1 as policy evaluation, since it is used to determine the action-value function of the policy. Likewise, since Step 2 is used to improve the policy, we also refer to it as a policy improvement step
+Control Problem: Estimate the optimal policy.
+Monte Carlo control method alternates between policy evaluation and policy improvement steps to recover the optimal policy π_*.
+![alt text](./images/mc_control.png)
+- two improvements that you can make to the policy evaluation step in your control algorithm.
+  - In the Incremental Mean concept, you will learn how to update the policy after every episode (instead of waiting to update the policy until after the values of the Q-table have fully converged from many episodes).
+  - In the Constant-alpha concept, you will learn how to train the agent to leverage its most recent experience more effectively.
