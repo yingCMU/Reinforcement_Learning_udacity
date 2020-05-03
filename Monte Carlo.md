@@ -108,6 +108,12 @@ Problem: in a single episode - the same action is selected from the same state m
 we can iterate this process: use any random policy to estimate values, update policy to optimal policy then continue with the new iteration.
 The problem is we may never truly explore non-optimal policies enough to know whether they are truly sub-optimal.
 Early perception can be incorrect.
+## when to update Q table? When to improve policy
+1. after all episode are collected
+2. after every episode: In our current algorithm for Monte Carlo control, we collect a large number of episodes to build the Q-table (as an estimate for the action-value function corresponding to the agent's current policy). Then, after the values in the Q-table have converged, we use the table to come up with an improved policy.
+Maybe it would be more efficient to update the Q-table after every episode. Then, the updated Q-table could be used to improve the policy. That new policy could then be used to generate the next episode, and so on.
+- incremental mean
+- Constant-alpha: emphasize more on recent update
 ## MC Control
 if the agent alternates between these two steps, with:
 - Step 1: using the policy \piπ to construct the Q-table, and
@@ -180,6 +186,17 @@ Maybe it would be more efficient to update the Q-table after every episode. Then
 
 In this case, even though we're updating the policy before the values in the Q-table accurately approximate the action-value function, this lower-quality estimate nevertheless still has enough information to help us propose successively better policies. If you're curious to learn more, you can read section 5.6 of the textbook
 ![alt text](./images/inc_mean.png)
-left is normal MC, right is incremental mean MC
+## Constant-alpha
+With incremental mean, 1/N getting smaller as more samples come in, so the it changes the estimation less and less.  But instead we should trust estimation in the latter stage more than early stage. So chaning to constant alpha improves this.
+![alt text](./images/constant_a.png)
+You should always set the value for \alphaα to a number greater than zero and less than (or equal to) one.
+
+- If α=0, then the action-value function estimate is never updated by the agent.
+- If α=1, then the final value estimate for each state-action pair is always equal to the last return that was experienced by the agent (after visiting the pair).
+- Smaller values for α encourage the agent to consider a longer history of returns when calculating the action-value function estimate. Increasing the value of \alphaα ensures that the agent focuses more on the most recently sampled returns.
+- When implementing constant-\alphaα MC control, you must be careful to not set the value of \alphaα too close to 1. This is because very large values can keep the algorithm from converging to the optimal policy π_*. However, you must also be careful to not set the value of \alphaα too low, as this can result in an agent who learns too slowly. The best value of \alphaα for your implementation will greatly depend on your environment and is best gauged through trial-and-error.
+
+1st is normal MC, 2nd is incremental mean MC, 3rd is constant-alpha MC
 ![alt text](./images/mc_algo.png)
 ![alt text](./images/mc_inc_mean_algo.png)
+![alt text](./images/mc_const_a.png)
