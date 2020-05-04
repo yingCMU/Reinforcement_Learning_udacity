@@ -18,7 +18,9 @@ Learn about RL for self-driving cars-[MIT 6.S094: Deep Learning for Self-Driving
 - Read this [paper-Inventory management in supply chains:a reinforcement learning approach](http://read.pudn.com/downloads142/sourcecode/others/617477/inventory%20supply%20chain/04051310570412465(1).pdf) that introduces RL for inventory management.
 
 # Resources
-- TextBook
+## papers
+- [Learning to see and act](https://www.cs.swarthmore.edu/~meeden/cs63/s15/nature15a.pdf)
+## TextBook
   [Grokking Deep Reinforcement Learning](https://www.manning.com/books/grokking-deep-reinforcement-learning#toc) This textbook features numerous examples, illustrations, exercises, and crystal-clear teaching.
   - [Python Implementation of Reinforcement Learning: An Introduction](https://github.com/ShangtongZhang/reinforcement-learning-an-introduction)
 - [Student list of resources](https://docs.google.com/spreadsheets/d/19jUvEO82qt3itGP3mXRmaoMbVOyE6bLOp5_QwqITzaM/edit#gid=0)
