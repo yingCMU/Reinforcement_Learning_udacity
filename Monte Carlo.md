@@ -114,6 +114,7 @@ Early perception can be incorrect.
 Maybe it would be more efficient to update the Q-table after every episode. Then, the updated Q-table could be used to improve the policy. That new policy could then be used to generate the next episode, and so on.
 - incremental mean
 - Constant-alpha: emphasize more on recent update
+3. after every time stamp - TD
 ## MC Control
 if the agent alternates between these two steps, with:
 - Step 1: using the policy \piπ to construct the Q-table, and
