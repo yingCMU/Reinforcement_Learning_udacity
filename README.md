@@ -26,6 +26,11 @@ Learn about RL for self-driving cars-[MIT 6.S094: Deep Learning for Self-Driving
 ## Articles
 - [DEEP LEARNING IN PRODUCTION & WAREHOUSING WITH AMAZON ROBOTICS](https://medium.com/@teamrework/deep-learning-in-production-warehousing-with-amazon-robotics-571e69fea721)
 - [Robot learns via trial and error like a human](https://www.cnet.com/news/robot-learns-via-trial-and-error-like-a-human/)
+
+## Challenges/Environment
+1. In mid-2018, OpenAI held a contest, where participants were tasked to create an algorithm that could learn to play the Sonic the Hedgehog game. The participants were tasked to train their RL algorithms on provided game levels; then, the trained agents were ranked according to their performance on previously unseen levels. Thus, the contest was designed to assess the ability of trained RL agents to generalize to new tasks.
+  - One of the provided baseline algorithms was Rainbow DQN. If you'd like to play with this dataset and run the baseline algorithms, you're encouraged to follow the setup [instructions](https://contest.openai.com/2018-1/details/).
+
 ## Others
 - [Student list of resources](https://docs.google.com/spreadsheets/d/19jUvEO82qt3itGP3mXRmaoMbVOyE6bLOp5_QwqITzaM/edit#gid=0)
 - [Gazebo](http://gazebosim.org/)

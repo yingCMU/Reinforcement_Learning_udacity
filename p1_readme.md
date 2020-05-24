@@ -42,3 +42,32 @@
 
     ```
     - I use exactly agent code from solution, here is how it performs:
+       ```
+        Episode 100	Average Score: -229.15
+        Episode 200	Average Score: -155.74
+        Episode 300	Average Score: -122.14
+        Episode 400	Average Score: -71.126
+        Episode 500	Average Score: -79.03
+        Episode 600	Average Score: -80.15
+        Episode 700	Average Score: -8.582
+        Episode 800	Average Score: 21.56
+        Episode 900	Average Score: 144.20
+        Episode 1000	Average Score: 48.05
+        Episode 1100	Average Score: 143.33
+        Episode 1200	Average Score: 138.89
+        Episode 1300	Average Score: 154.17
+        Episode 1400	Average Score: 160.33
+        Episode 1500	Average Score: 184.27
+        Episode 1600	Average Score: 194.99
+        Episode 1670	Average Score: 200.00
+        ```
+
+
+# Navigation
+
+Episode 100	Average Score: 0.80
+Episode 200	Average Score: 3.94
+Episode 300	Average Score: 7.76
+Episode 400	Average Score: 9.52
+Episode 469	Average Score: 12.00
+Environment solved in 369 episodes!	Average Score: 12.00

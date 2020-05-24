@@ -56,14 +56,31 @@ In Q-Learning, we update a guess with a guess, and this can potentially lead to 
   - What are the results?
 - Understanding the paper will probably take you longer than you think. Be patient, and reach out to the Udacity community with any questions.
 
-## [Double Q-Learning](https://arxiv.org/abs/1509.06461)
+## Double Q-Learning [Paper](https://arxiv.org/abs/1509.06461)
 [Issues in Using Function Approximation for Reinforcement Learning](https://www.ri.cmu.edu/pub_files/pub1/thrun_sebastian_1993_1/thrun_sebastian_1993_1.pdf)
 
 Deep Q-Learning tends to overestimate action values. Double Q-Learning has been shown to work well in practice to help with this.
+- to estimate action with max Q-value, the accuracy depends a lot on what has been tried and what neighboring state has been explored. This can result in an overestimation since we always pick the maximum among a set of noisy numbers.
+- double Q: select the best action using one set of parameters w , but evaluate it(get value for TD target) using a different set of parameters w'. like have two set of function approximators that must agree on the best action: if w picks an action that is not the best according to w', then the Q value returned is not that high. in the long run, this prevents algorithm from propogating incidental high reward that may have been obtained by chance but don't reflect long term returns,
+- in implementation, can use the frozen w for evaluation only.
 
-## [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952)
+## Prioritized Experience Replay [Paper](https://arxiv.org/abs/1511.05952)
 Deep Q-Learning samples experience transitions uniformly from a replay memory. Prioritized experienced replay is based on the idea that the agent can learn more effectively from some transitions than from others, and the more important transitions should be sampled with higher probability.
+
+![alt text](./images/prioritized_exp_replay.png)
+
 
 ## Dueling DQN
 [Dueling Network Architectures for Deep Reinforcement Learning](https://arxiv.org/abs/1511.06581)
+
 Currently, in order to determine which states are (or are not) valuable, we have to estimate the corresponding action values for each action. However, by replacing the traditional Deep Q-Network (DQN) architecture with a dueling architecture, we can assess the value of each state, without having to learn the effect of each action.
+
+## More extensions to DQN
+Each of the six extensions address a different issue with the original DQN algorithm.
+- Learning from multi-step bootstrap targets - [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783)
+- Distributional DQN - [A Distributional Perspective on Reinforcement Learning](https://arxiv.org/abs/1707.06887)
+- Noisy DQN - [Noisy Networks for Exploration](https://arxiv.org/abs/1706.10295)
+
+
+Researchers at Google DeepMind recently tested the performance of an agent that incorporated all six of these modifications. The corresponding algorithm was termed Rainbow - [Rainbow: Combining Improvements in Deep Reinforcement Learning](https://arxiv.org/abs/1710.02298)
+![alt text](./images/dqn_rainbow.png)
