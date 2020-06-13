@@ -1,5 +1,11 @@
 # Tensor
 https://pytorch.org/docs/stable/tensors.html
+- `torch.squeeze(input, dim=None, out=None) → Tensor` :Returns a tensor with all the dimensions of input of size 1 removed.
+
+  For example, if input is of shape: (A \times 1 \times B \times C \times 1 \times D)(A×1×B×C×1×D) then the out tensor will be of shape: (A \times B \times C \times D)(A×B×C×D) .
+
+  When dim is given, a squeeze operation is done only in the given dimension. If input is of shape: (A \times 1 \times B)(A×1×B) , squeeze(input, 0) leaves the tensor unchanged, but squeeze(input, 1) will squeeze the tensor to the shape (A \times B)(A×B) .
+
 - torch views: PyTorch allows a tensor to be a View of an existing tensor. View tensor shares the same underlying data with its base tensor. Supporting View avoids explicit data copy, thus allows us to do fast and memory efficient reshaping, slicing and element-wise operations.
    ```
    t = torch.rand(2, 3)
@@ -97,3 +103,4 @@ https://pytorch.org/docs/stable/tensors.html
 https://pytorch.org/docs/stable/nn.html#torch.nn.MSELoss
 - torch.nn.MSELoss
 - loss = F.mse_loss(Q_expected, Q_targets)
+- 'BCEWithLogitsLoss': This loss combines a Sigmoid layer and the BCELoss in one single class. This version is more numerically stable than using a plain Sigmoid followed by a BCELoss as, by combining the operations into one layer, we take advantage of the log-sum-exp trick for numerical stability.
