@@ -1,6 +1,25 @@
 # Tensor
 https://pytorch.org/docs/stable/tensors.html
-
+- torch views: PyTorch allows a tensor to be a View of an existing tensor. View tensor shares the same underlying data with its base tensor. Supporting View avoids explicit data copy, thus allows us to do fast and memory efficient reshaping, slicing and element-wise operations.
+   ```
+   t = torch.rand(2, 3)
+   tensor([[ 0.3466,  0.2140,  0.9704],
+        [ 0.4691,  0.6274,  0.4447]])
+   
+   t.view(-1,6)
+   
+   tensor([[ 0.3466,  0.2140,  0.9704,  0.4691,  0.6274,  0.4447]])
+   
+   t.view(6,-1)
+   
+   tensor([[ 0.3466],
+        [ 0.2140],
+        [ 0.9704],
+        [ 0.4691],
+        [ 0.6274],
+        [ 0.4447]])
+   
+   ```
 - `tensor.detach()`: Returns a new Tensor, detached from the current graph. The result will never require gradient.
 - `tensor.max(input, dim)`: returns two tensors, max values & idex
    ```
