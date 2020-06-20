@@ -1,5 +1,12 @@
 # Tensor
 https://pytorch.org/docs/stable/tensors.html
+
+- `tensor.item() → number`: Returns the value of this tensor as a standard Python number. This only works for tensors with one element. For other cases, see tolist(). 
+  ```
+  x = torch.tensor([1.0])
+  x.item()
+  ```
+
 - `torch.squeeze(input, dim=None, out=None) → Tensor` :Returns a tensor with all the dimensions of input of size 1 removed.
 
   For example, if input is of shape: (A \times 1 \times B \times C \times 1 \times D)(A×1×B×C×1×D) then the out tensor will be of shape: (A \times B \times C \times D)(A×B×C×D) .
